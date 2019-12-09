@@ -1,0 +1,21 @@
+import React from "react";
+
+import "./collection-preview.scss";
+import CollectionItem from "../collection-item/Collection-item";
+
+const CollectionPreview = ({ title, routeName, items }) => {
+  const renderItems = items
+    .filter((item, idx) => idx < 4)
+    .map(({ id, ...otherItemProps }) => (
+      <CollectionItem key={id} {...otherItemProps} />
+    ));
+
+  return (
+    <div className="collection-preview">
+      <h2 className="title">{title.toUpperCase()}</h2>
+      <div className="preview">{renderItems}</div>
+    </div>
+  );
+};
+
+export default CollectionPreview;
