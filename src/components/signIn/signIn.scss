@@ -1,16 +1,59 @@
+$breakpoints: (
+  "desktop": (
+    max-width: 1199.98px
+  ),
+  "tablet": (
+    max-width: 991.98px
+  ),
+  "phone": (
+    max-width: 767.98px
+  ),
+  "smallphone": (
+    max-width: 575.98px
+  )
+);
+
+@mixin breakpoint-down($breakpoint) {
+  $raw-query: map-get($breakpoints, $breakpoint);
+
+  @if $raw-query {
+    $query: if(
+      type-of($raw-query) == "string",
+      unquote($raw-query),
+      inspect($raw-query)
+    );
+
+    @media #{$query} {
+      @content;
+    }
+  } @else {
+    @error 'No value found for `#{$breakpoint}`. ' + 'Please make sure it is defined in `$breakpoints` map.';
+  }
+}
+
 .sign-in {
   width: 30%;
-  padding: 20px 70px;
+  padding: 0px 70px;
 
   h2 {
     color: rgb(8, 8, 8);
-    margin-bottom: 10px;
-    font-family: "Open Sans Condensed", sans-serif;
+    margin-top: 10px;
+    margin-bottom: 5px;
   }
 
   span {
-    font-size: 18px;
-    font-family: "Open Sans Condensed", sans-serif;
+    display: block;
+    font-size: 20px;
+
     font-weight: 300;
+    margin-bottom: 20px;
+  }
+
+  button:not(:last-child) {
+    margin-right: 6px;
+  }
+
+  @include breakpoint-down(desktop) {
+    width: 40%;
   }
 }

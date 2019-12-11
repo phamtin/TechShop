@@ -2,9 +2,9 @@ import React from "react";
 
 import "./button.scss";
 
-const Button = ({ children, ...otheProps }) => {
+const Button = ({ children, clicked }) => {
   return (
-    <button className="custom-button" {...otheProps}>
+    <button className="custom-button" onClick={clicked}>
       {children}
     </button>
   );

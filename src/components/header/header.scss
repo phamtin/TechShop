@@ -18,9 +18,11 @@
 
     .option {
       padding: 10px 15px;
-      font-family: Arial;
+      font-family: "Open Sans Condensed", sans-serif;
+      font-size: 21px;
+      color: rgb(27, 27, 27);
       text-decoration: none;
-      transition: 0.3s;
+      transition: 0.2s;
 
       &:hover {
         background-color: rgb(240, 240, 240);
