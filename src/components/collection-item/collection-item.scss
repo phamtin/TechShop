@@ -1,9 +1,19 @@
 .collection-item {
   display: flex;
   flex-direction: column;
+  position: relative;
   width: 23%;
   height: 300px;
   align-items: center;
+  cursor: pointer;
+  transition: 0.2s;
+
+  &:hover {
+    box-shadow: 5px 0 5px rgb(190, 190, 190);
+    .custom-button {
+      display: block;
+    }
+  }
 
   .image {
     width: 100%;
@@ -28,5 +38,13 @@
     .price {
       width: 10%;
     }
+  }
+
+  .custom-button {
+    position: absolute;
+    display: none;
+    bottom: 9%;
+    width: 92%;
+    opacity: 0.8;
   }
 }

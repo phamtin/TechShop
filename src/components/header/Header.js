@@ -1,10 +1,21 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { createStructuredSelector } from "reselect";
 
-import "./header.scss";
+import { selectorUserItems } from "../../redux/user/user.selector";
+import { selectorCartIsShow } from "../../redux/cart/cart.selector";
 import { ReactComponent as Logo } from "../../assets/logo.svg";
+import CartDropdown from "../cart-dropdown/CartDropdown";
+import { auth } from "../../firebase/firebase.utils";
+import CartIcon from "../cart-icon/CartIcon";
+import "./header.scss";
 
-const Header = props => {
+const Header = ({ currentUser, isShow }) => {
+  const handleSignOut = () => {
+    auth.signOut();
+  };
+
   return (
     <div className="header">
       <Link className="logo-container" to="/">
@@ -14,15 +25,34 @@ const Header = props => {
         <Link to="/shop" className="option">
           Shop
         </Link>
-        <Link to="/" className="option">
+        <Link to="/contact" className="option">
           Contact
         </Link>
-        <Link to="/sign" className="option">
-          Sign in
+        {currentUser ? (
+          <div
+            className="option"
+            onClick={handleSignOut}
+            style={{ cursor: "pointer" }}
+          >
+            Sign out
+          </div>
+        ) : (
+          <Link to="/sign" className="option">
+            Sign in
+          </Link>
+        )}
+        <Link to="">
+          <CartIcon />
         </Link>
       </div>
+      {isShow ? <CartDropdown /> : null}
     </div>
   );
 };
 
-export default Header;
+const mapStateToProps = createStructuredSelector({
+  isShow: selectorCartIsShow,
+  currentUser: selectorUserItems
+});
+
+export default connect(mapStateToProps, null)(Header);
