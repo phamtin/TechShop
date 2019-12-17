@@ -18,7 +18,12 @@ export const InscreaseQuantity = item => ({
   type: actionType.INCREASE_QUANTITY,
   payload: item
 });
+
 export const DescreaseQuantity = item => ({
   type: actionType.DECREASE_QUANTITY,
   payload: item
+});
+
+export const EmptyCart = () => ({
+  type: actionType.EMPTY_CART
 });

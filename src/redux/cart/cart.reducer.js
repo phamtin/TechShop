@@ -2,13 +2,14 @@ import * as actionType from "./cart.type";
 import { handleAddItem, handleQuantity } from "./cart.utils";
 
 const INITIAL_STATE = {
-  isShow: false,
-  items: []
+  items: [],
+  isShow: false
 };
 
 const cartReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case actionType.TOGGLE_CART_DROPDOWN:
+      console.log("object");
       return {
         ...state,
         isShow: !state.isShow
@@ -32,6 +33,11 @@ const cartReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         items: handleQuantity(state.items, action.payload, "dec")
+      };
+    case actionType.EMPTY_CART:
+      return {
+        ...state,
+        items: []
       };
     default:
       return state;

@@ -20,21 +20,27 @@ $breakpoints: (
   }
 }
 
-.sign-up {
+.collection-page {
   display: flex;
   flex-direction: column;
-  width: 380px;
 
   .title {
-    margin: 10px 0 5px 0;
+    font-size: 38px;
+    margin: 0 auto 30px;
   }
 
-  span {
-    font-size: 19px;
-  }
+  .items {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: 10px;
 
-  @include breakpoint-down(smallphone) {
-    width: 100%;
-    margin-top: 40px;
+    & .collection-item {
+      width: 100%;
+      margin-bottom: 30px;
+    }
+
+    @include breakpoint-down(smallphone) {
+      grid-template-columns: 1fr 1fr;
+    }
   }
 }

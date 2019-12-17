@@ -1,0 +1,80 @@
+$breakpoints: (
+  "smallphone": (
+    max-width: 575.98px
+  )
+);
+
+@mixin breakpoint-down($breakpoint) {
+  $raw-query: map-get($breakpoints, $breakpoint);
+
+  @if $raw-query {
+    $query: if(
+      type-of($raw-query) == "string",
+      unquote($raw-query),
+      inspect($raw-query)
+    );
+
+    @media #{$query} {
+      @content;
+    }
+  }
+}
+
+.contact {
+  display: flex;
+  padding: 0;
+  i {
+    font-size: 30px;
+    margin-right: 9px;
+    color: rgb(240, 252, 255);
+  }
+
+  .background-image {
+    position: absolute;
+    z-index: -1;
+    width: 99%;
+    height: 85%;
+    background-image: url("https://i.ibb.co/RvwnBL8/pink-shirt.png");
+    background-size: cover;
+    background-position: 50% 30%;
+    filter: blur(30px);
+
+    @include breakpoint-down(tablet) {
+      width: 96%;
+    }
+
+    @include breakpoint-down(smallphone) {
+      width: 95%;
+    }
+  }
+
+  .ava {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 0 0 30%;
+
+    img {
+      max-width: 45%;
+    }
+
+    @include breakpoint-down(smallphone) {
+      width: 35%;
+    }
+  }
+
+  .intro {
+    flex: 0 0 50%;
+  }
+
+  h2,
+  span {
+    font-family: "Open Sans Condensed", sans-serif;
+    margin-bottom: 10px;
+  }
+
+  @include breakpoint-down(smallphone) {
+    flex-direction: column;
+    padding: 0 5px;
+  }
+}

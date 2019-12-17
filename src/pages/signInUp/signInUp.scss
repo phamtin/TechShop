@@ -1,6 +1,33 @@
+$breakpoints: (
+  "smallphone": (
+    max-width: 575.98px
+  )
+);
+
+@mixin breakpoint-down($breakpoint) {
+  $raw-query: map-get($breakpoints, $breakpoint);
+
+  @if $raw-query {
+    $query: if(
+      type-of($raw-query) == "string",
+      unquote($raw-query),
+      inspect($raw-query)
+    );
+
+    @media #{$query} {
+      @content;
+    }
+  }
+}
+
 .sign-page {
   display: flex;
   justify-content: flex-end;
   align-items: flex-start;
   padding: 0 95px;
+
+  @include breakpoint-down(smallphone) {
+    padding: 10px;
+    flex-direction: column;
+  }
 }

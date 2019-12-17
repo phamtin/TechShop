@@ -1,13 +1,4 @@
 $breakpoints: (
-  "desktop": (
-    max-width: 1199.98px
-  ),
-  "tablet": (
-    max-width: 991.98px
-  ),
-  "phone": (
-    max-width: 767.98px
-  ),
   "smallphone": (
     max-width: 575.98px
   )
@@ -53,7 +44,14 @@ $breakpoints: (
     margin-right: 6px;
   }
 
-  @include breakpoint-down(desktop) {
-    width: 40%;
+  button:last-child {
+    background: none;
+    border: 0;
+    color: rgb(218, 35, 35);
+  }
+
+  @include breakpoint-down(smallphone) {
+    width: 100%;
+    padding: 0;
   }
 }

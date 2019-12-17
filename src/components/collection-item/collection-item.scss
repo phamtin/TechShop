@@ -1,9 +1,32 @@
+$breakpoints: (
+  "smallphone": (
+    max-width: 575.98px
+  )
+);
+
+@mixin breakpoint-down($breakpoint) {
+  $raw-query: map-get($breakpoints, $breakpoint);
+
+  @if $raw-query {
+    $query: if(
+      type-of($raw-query) == "string",
+      unquote($raw-query),
+      inspect($raw-query)
+    );
+
+    @media #{$query} {
+      @content;
+    }
+  }
+}
+
 .collection-item {
   display: flex;
   flex-direction: column;
   position: relative;
-  width: 23%;
+  width: 23vw;
   height: 300px;
+  margin-bottom: 20px;
   align-items: center;
   cursor: pointer;
   transition: 0.2s;
@@ -46,5 +69,10 @@
     bottom: 9%;
     width: 92%;
     opacity: 0.8;
+  }
+
+  @include breakpoint-down(smallphone) {
+    width: 48%;
+    height: 250px;
   }
 }

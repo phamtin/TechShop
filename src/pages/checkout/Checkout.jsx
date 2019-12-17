@@ -1,17 +1,26 @@
-import React from "react";
-
-import { createStructuredSelector } from "reselect";
-import {
-  selectorCartItems,
-  selectorCartTotal
-} from "../../redux/cart/cart.selector";
-import "./checkout.scss";
+import React, { useState } from "react";
 import { connect } from "react-redux";
-import CheckoutItem from "../../components/checkout-item/CheckoutItem";
+import { Redirect } from "react-router-dom";
+import { createStructuredSelector } from "reselect";
 
-const Checkout = ({ cartItems, total }) => {
+import { selectorItems, selectorTotal } from "../../redux/cart/cart.selector";
+import CheckoutItem from "../../components/checkout-item/CheckoutItem";
+import Button from "../../components/button/Button";
+import { EmptyCart } from "../../redux/cart/cart.action";
+import "./checkout.scss";
+
+const Checkout = ({ cartItems, total, emptyCart }) => {
+  const [paid, setPaid] = useState(false);
+
+  const pay = () => {
+    emptyCart();
+    alert("Paid successfully!");
+    setPaid(true);
+  };
+
   return (
     <div className="checkout-page">
+      {paid ? <Redirect to="/" /> : null}
       <div className="checkout-header">
         <div className="checkout-block">
           <span>Products</span>
@@ -33,13 +42,20 @@ const Checkout = ({ cartItems, total }) => {
         <CheckoutItem key={item.id} item={item} />
       ))}
       <div className="total">TOTAL: ${total}</div>
+      <Button clicked={pay}>pay</Button>
     </div>
   );
 };
 
 const mapStateToProps = createStructuredSelector({
-  cartItems: selectorCartItems,
-  total: selectorCartTotal
+  cartItems: selectorItems,
+  total: selectorTotal
 });
 
-export default connect(mapStateToProps, null)(Checkout);
+const mapDispatchToProps = dispatch => {
+  return {
+    emptyCart: () => dispatch(EmptyCart())
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Checkout);

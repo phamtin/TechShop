@@ -1,3 +1,25 @@
+$breakpoints: (
+  "smallphone": (
+    max-width: 575.98px
+  )
+);
+
+@mixin breakpoint-down($breakpoint) {
+  $raw-query: map-get($breakpoints, $breakpoint);
+
+  @if $raw-query {
+    $query: if(
+      type-of($raw-query) == "string",
+      unquote($raw-query),
+      inspect($raw-query)
+    );
+
+    @media #{$query} {
+      @content;
+    }
+  }
+}
+
 .custom-button {
   min-width: 100px;
   letter-spacing: 0.5px;
@@ -15,5 +37,9 @@
   &:hover {
     background-color: white;
     color: rgb(8, 8, 8);
+  }
+
+  @include breakpoint-down(smallphone) {
+    padding: 12px 10px;
   }
 }

@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import { withRouter } from "react-router-dom";
 
-import { selectorCartItems } from "../../redux/cart/cart.selector";
+import { selectorItems } from "../../redux/cart/cart.selector";
 import { ToggleCartDropdown } from "../../redux/cart/cart.action";
 import CartItem from "../cart-item/CartItem";
 import Button from "../button/Button";
@@ -30,7 +30,7 @@ const CartDropdown = ({ items, history, toggleCartDropdown }) => {
 };
 
 const mapStateToProps = createStructuredSelector({
-  items: selectorCartItems
+  items: selectorItems
 });
 
 const mapDispatchToProps = dispatch => {
