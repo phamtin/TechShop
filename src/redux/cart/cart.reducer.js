@@ -9,7 +9,6 @@ const INITIAL_STATE = {
 const cartReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case actionType.TOGGLE_CART_DROPDOWN:
-      console.log("object");
       return {
         ...state,
         isShow: !state.isShow

@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 
@@ -9,6 +8,12 @@ import { ReactComponent as Logo } from "../../assets/logo.svg";
 import CartDropdown from "../cart-dropdown/CartDropdown";
 import { auth } from "../../firebase/firebase.utils";
 import CartIcon from "../cart-icon/CartIcon";
+import {
+  HeaderContainer,
+  LogoContainer,
+  OptionsContainer,
+  Option
+} from "./header.style";
 import "./header.scss";
 
 const Header = ({ currentUser, isShow }) => {
@@ -17,36 +22,24 @@ const Header = ({ currentUser, isShow }) => {
   };
 
   return (
-    <div className="header">
-      <Link className="logo-container" to="/">
+    <HeaderContainer>
+      <LogoContainer to="/">
         <Logo />
-      </Link>
-      <div className="options">
-        <Link to="/shop" className="option">
-          Shop
-        </Link>
-        <Link to="/contact" className="option">
-          Contact
-        </Link>
+      </LogoContainer>
+      <OptionsContainer>
+        <Option to="/shop">Shop</Option>
+        <Option to="/contact">Contact</Option>
         {currentUser ? (
-          <div
-            className="option"
-            onClick={handleSignOut}
-            style={{ cursor: "pointer" }}
-          >
+          <Option as="div" onClick={handleSignOut}>
             Sign out
-          </div>
+          </Option>
         ) : (
-          <Link to="/sign" className="option">
-            Sign in
-          </Link>
+          <Option to="/sign">Sign in</Option>
         )}
-        <Link to="">
-          <CartIcon />
-        </Link>
-      </div>
+        <CartIcon />
+      </OptionsContainer>
       {isShow ? <CartDropdown /> : null}
-    </div>
+    </HeaderContainer>
   );
 };
 

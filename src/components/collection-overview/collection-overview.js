@@ -5,7 +5,6 @@ import { selectorCollections } from "../../redux/shoppage/shoppage.selector";
 import { connect } from "react-redux";
 
 const CollectionOverview = ({ collections }) => {
-  console.log(collections);
   return (
     <div className="collecttion-overview">
       {collections.map(({ id, ...otherCollectionProps }) => (

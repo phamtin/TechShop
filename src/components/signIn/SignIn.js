@@ -5,7 +5,7 @@ import Form from "../form/Form";
 import Button from "../button/Button";
 import { auth, signInWithGoogle } from "../../firebase/firebase.utils";
 
-const SignIn = props => {
+const SignIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 

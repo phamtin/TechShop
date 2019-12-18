@@ -19,7 +19,6 @@ const Contact = () => {
         <a href="https://github.com/phamtin/">
           <i className="fab fa-github-square" />
         </a>
-
         <p>
           <strong>Tin</strong> is the instructor of the highest rated Web
           Development course on Udemy as well as one of the fastest growing. His
