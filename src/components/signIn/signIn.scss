@@ -29,15 +29,15 @@ $breakpoints: (
   h2 {
     color: rgb(8, 8, 8);
     margin-top: 10px;
-    margin-bottom: 5px;
+    margin-bottom: 0;
   }
 
   span {
     display: block;
-    font-size: 20px;
+    font-size: 19px;
 
     font-weight: 300;
-    margin-bottom: 20px;
+    margin-bottom: 19px;
   }
 
   button:not(:last-child) {

@@ -9,12 +9,12 @@ export const selectorCartIsShow = createSelector(
   cart => cart.isShow
 );
 
-export const selectorCartItemsCount = createSelector([selectorItems], items => {
-  return items.reduce(
+export const selectorCartItemsCount = createSelector([selectorItems], items =>
+  items.reduce(
     (accumalatedQuantity, item) => accumalatedQuantity + item.quantity,
     0
-  );
-});
+  )
+);
 
 export const selectorTotal = createSelector([selectorItems], items =>
   items.reduce(

@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 
-import { selectorUserItems } from "../../redux/user/user.selector";
+import { selectorCurrentUser } from "../../redux/user/user.selector";
 import { selectorCartIsShow } from "../../redux/cart/cart.selector";
 import { ReactComponent as Logo } from "../../assets/logo.svg";
 import CartDropdown from "../cart-dropdown/CartDropdown";
@@ -45,7 +45,7 @@ const Header = ({ currentUser, isShow }) => {
 
 const mapStateToProps = createStructuredSelector({
   isShow: selectorCartIsShow,
-  currentUser: selectorUserItems
+  currentUser: selectorCurrentUser
 });
 
 export default connect(mapStateToProps, null)(Header);

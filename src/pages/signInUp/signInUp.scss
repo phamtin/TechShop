@@ -26,6 +26,11 @@ $breakpoints: (
   align-items: flex-start;
   padding: 0 95px;
 
+  h2,
+  span {
+    font-family: "Open Sans Condensed";
+  }
+
   @include breakpoint-down(smallphone) {
     padding: 10px;
     flex-direction: column;

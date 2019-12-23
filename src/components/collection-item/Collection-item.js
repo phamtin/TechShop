@@ -1,11 +1,13 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import * as actions from "../../redux/cart/cart.action";
-import "./collection-item.scss";
+import { AddItemToCart } from "../../redux/cart/cart.action";
 import Button from "../button/Button";
+import "./collection-item.scss";
 
 const CollectionItem = ({ item, onAddItem }) => {
+  const addToCart = () => onAddItem(item);
+
   return (
     <div className="collection-item">
       <div
@@ -14,23 +16,15 @@ const CollectionItem = ({ item, onAddItem }) => {
       />
       <div className="collection-footer">
         <div className="name">{item.name}</div>
-        <div className="price">{item.price}</div>
+        <div className="price">${item.price}</div>
       </div>
-      <Button
-        clicked={() => {
-          onAddItem(item);
-        }}
-      >
-        Add to cart
-      </Button>
+      <Button clicked={addToCart}>Add to cart</Button>
     </div>
   );
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    onAddItem: item => dispatch(actions.AddItemToCart(item))
-  };
-};
+const mapDispatchToProps = dispatch => ({
+  onAddItem: item => dispatch(AddItemToCart(item))
+});
 
 export default connect(null, mapDispatchToProps)(CollectionItem);

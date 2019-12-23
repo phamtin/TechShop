@@ -3,7 +3,7 @@ import React from "react";
 import "./collection-preview.scss";
 import CollectionItem from "../collection-item/Collection-item";
 
-const CollectionPreview = ({ title, routeName, items }) => {
+const CollectionPreview = ({ title, items }) => {
   const renderItems = items
     .filter((_, idx) => idx < 4)
     .map(item => <CollectionItem key={item.id} item={item} />);
