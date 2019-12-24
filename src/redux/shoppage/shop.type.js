@@ -1,0 +1,1 @@
+export const FETCH_DATA_SHOP = "FETCH_DATA_SHOP";
