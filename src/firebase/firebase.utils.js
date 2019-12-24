@@ -35,8 +35,8 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
 };
 firebase.initializeApp(firebaseConfig);
 
-export const transformCollectionSnapshot = collections => {
-  const transformedCollection = collections.docs.map(doc => {
+export const transformCollectionSnapshot = snapshot => {
+  const transformedCollection = snapshot.docs.map(doc => {
     const { title, items } = doc.data();
     return {
       id: doc.id,
@@ -50,6 +50,7 @@ export const transformCollectionSnapshot = collections => {
     return accumulator;
   }, {});
 };
+
 export const addCollectionAndItems = async (collectionKey, items) => {
   const batch = firestore.batch();
   const collectionRef = firestore.collection(collectionKey);
@@ -59,6 +60,7 @@ export const addCollectionAndItems = async (collectionKey, items) => {
   });
   return await batch.commit();
 };
+
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();
 const provider = new firebase.auth.GoogleAuthProvider();
