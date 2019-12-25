@@ -1,51 +1,30 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
+import { connect } from "react-redux";
 import { Route } from "react-router-dom";
 
-import CollectionOverview from "../../components/collection-overview/collection-overview";
-import WithSpinner from "../../components/with-spinner/WithSpinner";
-import { fetchShopData } from "../../redux/shoppage/shop.action";
-import Category from "../category/Category";
-import { connect } from "react-redux";
-import {
-  firestore,
-  transformCollectionSnapshot
-} from "../../firebase/firebase.utils";
-
-const CollectionOverviewWithSpinner = WithSpinner(CollectionOverview);
-const CategoryWithSpinner = WithSpinner(Category);
+import CollectionOverviewContainer from "../../components/collection-overview/collection-overview.container";
+import CategoryContainer from "../category/Category.container";
+import { fetchData } from "../../redux/shoppage/shop.action";
 
 const Shop = ({ match, onFetchData }) => {
-  const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
-    const dataRef = firestore.collection("data");
-    dataRef.onSnapshot(async snapshot => {
-      const collectionMap = transformCollectionSnapshot(snapshot);
-      onFetchData(collectionMap);
-      setIsLoading(false);
-    });
+    onFetchData();
   }, [onFetchData]);
 
   return (
-    <div className="shop-page" style={{ padding: "20px 10px" }}>
+    <div className="shop-page" style={{ padding: "20px 15px" }}>
       <Route
         exact
         path={`${match.path}`}
-        render={props => (
-          <CollectionOverviewWithSpinner isLoading={isLoading} {...props} />
-        )}
+        component={CollectionOverviewContainer}
       />
-      <Route
-        path={`${match.path}/:categoryId`}
-        render={props => (
-          <CategoryWithSpinner isLoading={isLoading} {...props} />
-        )}
-      />
+      <Route path={`${match.path}/:categoryId`} component={CategoryContainer} />
     </div>
   );
 };
 
 const mapDispatchToProps = dispatch => ({
-  onFetchData: collectionMap => dispatch(fetchShopData(collectionMap))
+  onFetchData: () => dispatch(fetchData())
 });
 
 export default connect(null, mapDispatchToProps)(Shop);

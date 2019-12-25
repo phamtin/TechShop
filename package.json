@@ -3,10 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "eslint-utils": "^1.4.3",
+    "eslint-config-react-app": "^5.1.0",
     "firebase": "^7.5.2",
     "global": "^4.4.0",
     "heroku": "^7.35.0",
+    "install-peerdeps": "^2.0.1",
     "node-sass": "4.13.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
@@ -15,10 +16,15 @@
     "redux": "^4.0.4",
     "redux-logger": "^3.0.6",
     "redux-persist": "^6.0.0",
+    "redux-thunk": "^2.3.0",
     "reselect": "^4.0.0",
     "styled-components": "^4.4.1"
   },
   "devDependencies": {
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.9.0",
+    "eslint-plugin-prettier": "^3.1.2",
+    "prettier": "^1.19.1",
     "react-scripts": "3.3.0"
   },
   "resolutions": {},
@@ -26,7 +32,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "eslint-check": "eslint --print-config path/to/main.js | eslint-config-prettier-check"
   },
   "eslintConfig": {
     "extends": "react-app"

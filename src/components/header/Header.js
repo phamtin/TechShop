@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
+import { withRouter} from 'react-router-dom'
 
 import { selectorCurrentUser } from "../../redux/user/user.selector";
 import { selectorCartIsShow } from "../../redux/cart/cart.selector";
@@ -16,9 +17,10 @@ import {
 } from "./header.style";
 import "./header.scss";
 
-const Header = ({ currentUser, isShow }) => {
+const Header = ({ currentUser, isShow,history }) => {
   const handleSignOut = () => {
     auth.signOut();
+    history.replace("/");
   };
 
   return (
@@ -28,6 +30,9 @@ const Header = ({ currentUser, isShow }) => {
       </LogoContainer>
       <OptionsContainer>
         <Option to="/shop">Shop</Option>
+        {currentUser ? (
+          <Option to="/orders">Orders</Option>
+        ) : null}
         <Option to="/contact">Contact</Option>
         {currentUser ? (
           <Option as="div" onClick={handleSignOut}>
@@ -48,4 +53,4 @@ const mapStateToProps = createStructuredSelector({
   currentUser: selectorCurrentUser
 });
 
-export default connect(mapStateToProps, null)(Header);
+export default connect(mapStateToProps, null)(withRouter(Header));

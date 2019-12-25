@@ -10,21 +10,27 @@ var firebaseConfig = {
   appId: "1:166085694476:web:ae80b469dcaedc7274ca29",
   authDomain: "techshop-2202.firebaseapp.com"
 };
+firebase.initializeApp(firebaseConfig);
+export const auth = firebase.auth();
+export const firestore = firebase.firestore();
+const provider = new firebase.auth.GoogleAuthProvider();
+provider.setCustomParameters({ prompt: "select_account" });
+export const signInWithGoogle = () => auth.signInWithPopup(provider);
 
 export const createUserProfileDocument = async (userAuth, additionalData) => {
   if (!userAuth) return;
-
   const userRef = firestore.doc(`users/${userAuth.uid}`);
   const snapshot = await userRef.get();
-
   if (!snapshot.exists) {
     const { displayName, email } = userAuth;
     const createAt = new Date();
+    const orders = [];
     try {
       await userRef.set({
         displayName,
         email,
         createAt,
+        orders,
         ...additionalData
       });
     } catch (error) {
@@ -33,7 +39,6 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
   }
   return userRef;
 };
-firebase.initializeApp(firebaseConfig);
 
 export const transformCollectionSnapshot = snapshot => {
   const transformedCollection = snapshot.docs.map(doc => {
@@ -60,11 +65,5 @@ export const addCollectionAndItems = async (collectionKey, items) => {
   });
   return await batch.commit();
 };
-
-export const auth = firebase.auth();
-export const firestore = firebase.firestore();
-const provider = new firebase.auth.GoogleAuthProvider();
-provider.setCustomParameters({ prompt: "select_account" });
-export const signInWithGoogle = () => auth.signInWithPopup(provider);
 
 export default firebase;

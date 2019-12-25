@@ -3,10 +3,10 @@ import { Link } from "react-router-dom";
 import { respondTo } from "../../styled";
 
 const styledLink = css`
-  padding: 10px 15px;
+  padding: 10px 7px;
   color: rgb(27, 27, 27);
   font-family: "Open Sans Condensed", sans-serif;
-  font-size: 20px;
+  font-size: 19px;
   text-decoration: none;
   cursor: "pointer";
 `;

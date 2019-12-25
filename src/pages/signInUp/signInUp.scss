@@ -1,6 +1,9 @@
 $breakpoints: (
   "smallphone": (
     max-width: 575.98px
+  ),
+  "tablet": (
+    max-width: 767.98px
   )
 );
 
@@ -31,6 +34,9 @@ $breakpoints: (
     font-family: "Open Sans Condensed";
   }
 
+  @include breakpoint-down(tablet) {
+    padding: 0 10px;
+  }
   @include breakpoint-down(smallphone) {
     padding: 10px;
     flex-direction: column;

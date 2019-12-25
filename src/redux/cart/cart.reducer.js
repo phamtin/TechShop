@@ -13,6 +13,7 @@ const cartReducer = (state = INITIAL_STATE, action) => {
         ...state,
         isShow: !state.isShow
       };
+
     case actionType.ADD_ITEM:
       return {
         ...state,

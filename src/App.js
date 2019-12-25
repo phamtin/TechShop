@@ -13,6 +13,7 @@ import Header from "./components/header/Header";
 import Contact from "./pages/contact/Contact";
 import Shop from "./pages/shop/Shop";
 import "./sass/global.scss";
+import Orders from "./pages/orders/Orders";
 
 class App extends React.Component {
   unSubcribeAuth = null;
@@ -43,6 +44,7 @@ class App extends React.Component {
         <Switch>
           <Route exact path="/" component={HomePage} />
           <Route path="/shop" component={Shop} />
+          <Route path="/orders" component={Orders} />
           <Route exact path="/checkout" component={Checkout} />
           <Route
             exact

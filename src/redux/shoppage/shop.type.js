@@ -1,1 +1,4 @@
-export const FETCH_DATA_SHOP = "FETCH_DATA_SHOP";
+export const FETCH_DATA = "FETCH_DATA";
+export const FETCH_DATA_START = "FETCH_DATA_START";
+export const FETCH_DATA_FAIL = "FETCH_DATA_FAIL";
+export const FETCH_DATA_SUCCESS = "FETCH_DATA_SUCCESS";

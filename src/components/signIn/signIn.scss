@@ -1,6 +1,9 @@
 $breakpoints: (
   "smallphone": (
     max-width: 575.98px
+  ),
+  "tablet": (
+    max-width: 767.98px
   )
 );
 
@@ -49,9 +52,11 @@ $breakpoints: (
     border: 0;
     color: rgb(218, 35, 35);
   }
-
+  @include breakpoint-down(tablet) {
+    width: 60%;
+    padding: 0 20px;
+  }
   @include breakpoint-down(smallphone) {
-    width: 100%;
     padding: 0;
   }
 }
