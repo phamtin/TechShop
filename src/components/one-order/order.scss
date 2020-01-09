@@ -1,0 +1,38 @@
+.all-items {
+  display: flex;
+
+  align-items: center;
+  width: 80%;
+  margin-bottom: 20px;
+  padding: 20px 35px;
+  border: 1px rgb(46, 46, 46) solid;
+
+  .data {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .title {
+    margin-right: 30px;
+    height: 100%;
+  }
+
+  h4 {
+    margin-right: 10px;
+  }
+
+  .order {
+    width: 80%;
+    margin-bottom: 20px;
+    padding: 25px 10px;
+    border: 1px rgb(46, 46, 46) solid;
+  }
+
+  .one-item {
+    display: flex;
+    align-items: center;
+    margin: 5px 10px 5px 0;
+    padding: 3px 12px;
+    border: 1px rgb(46, 46, 46) solid;
+  }
+}

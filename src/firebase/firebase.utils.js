@@ -24,13 +24,11 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
   if (!snapshot.exists) {
     const { displayName, email } = userAuth;
     const createAt = new Date();
-    const orders = [];
     try {
       await userRef.set({
         displayName,
         email,
         createAt,
-        orders,
         ...additionalData
       });
     } catch (error) {
@@ -39,6 +37,13 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
   }
   return userRef;
 };
+
+export const transformOrdersSnapshot = snapshot =>
+  snapshot.docs.map(doc => {
+    const obj = doc.data();
+    const items = Object.values(obj);
+    return items;
+  });
 
 export const transformCollectionSnapshot = snapshot => {
   const transformedCollection = snapshot.docs.map(doc => {
@@ -52,6 +57,13 @@ export const transformCollectionSnapshot = snapshot => {
   });
   return transformedCollection.reduce((accumulator, collection) => {
     accumulator[collection.title.toLowerCase()] = collection;
+    return accumulator;
+  }, {});
+};
+
+export const transformArrayOrder = order => {
+  return order.reduce((accumulator, item) => {
+    accumulator[item.name.toLowerCase()] = item;
     return accumulator;
   }, {});
 };

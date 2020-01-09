@@ -28,6 +28,7 @@ $breakpoints: (
   padding: 9px 0;
   font-size: 20px;
   align-items: center;
+  font-family: "Open Sans Condensed", sans-serif;
 
   .image-container {
     width: 23%;
@@ -42,6 +43,7 @@ $breakpoints: (
   .quantity,
   .price {
     width: 24%;
+    font-size: 16px;
   }
 
   @include breakpoint-down(smallphone) {

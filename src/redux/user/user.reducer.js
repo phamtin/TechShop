@@ -1,7 +1,8 @@
 import * as actionType from "./user.type";
 
 const INITIAL_STATE = {
-  currentUser: null
+  currentUser: null,
+  isLoading: false
 };
 
 const userReducer = (state = INITIAL_STATE, action) => {
@@ -11,7 +12,18 @@ const userReducer = (state = INITIAL_STATE, action) => {
         ...state,
         currentUser: action.payload
       };
-
+    case actionType.PUSH_PAID_ORDER_START:
+      return {
+        isLoading: true
+      };
+    case actionType.PUSH_PAID_ORDER_SUCCESS:
+      return {
+        isLoading: false
+      };
+    case actionType.PUSH_PAID_ORDER_FAIL:
+      return {
+        isLoading: false
+      };
     default:
       return state;
   }

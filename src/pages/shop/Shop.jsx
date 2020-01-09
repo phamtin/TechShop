@@ -8,6 +8,7 @@ import { fetchData } from "../../redux/shoppage/shop.action";
 
 const Shop = ({ match, onFetchData }) => {
   useEffect(() => {
+    console.log("1");
     onFetchData();
   }, [onFetchData]);
 
